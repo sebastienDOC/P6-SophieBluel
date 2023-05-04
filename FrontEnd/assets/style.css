@@ -199,10 +199,14 @@ input[type="button"]{
 }
 
 input[type="button"]:hover{
-	
 	color: white;
 	background-color: #1D6154;
 	cursor: pointer;
+}
+
+input[type="button"]:focus{
+	color: white;
+	background-color: #1D6154;
 }
 
 footer nav ul {

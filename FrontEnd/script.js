@@ -38,7 +38,7 @@ fetch ("http://localhost:5678/api/works")
                 filtres.appendChild(bouton);
                 bouton.type = 'button';
                 bouton.value = categories[i].name;
-                bouton.id = `btn-${categories[i].name}`;
+                bouton.id = `btn-${categories[i].id}`;
             }
 
             const boutonTous = document.getElementById("btn-tous");
@@ -50,7 +50,7 @@ fetch ("http://localhost:5678/api/works")
                 projetsAffiches(tous);
             });
 
-            const boutonObjets = document.getElementById("btn-Objets");
+            const boutonObjets = document.getElementById("btn-1");
             boutonObjets.addEventListener("click", function () {
                 const objets = projets.filter(function (projet) {
                     return projet.categoryId === 1;
@@ -59,7 +59,7 @@ fetch ("http://localhost:5678/api/works")
                 projetsAffiches(objets);
             });
 
-            const boutonAppartements = document.getElementById("btn-Appartements");
+            const boutonAppartements = document.getElementById("btn-2");
             boutonAppartements.addEventListener("click", function () {
                 const appartements = projets.filter(function (projet) {
                     return projet.categoryId === 2;
@@ -68,7 +68,7 @@ fetch ("http://localhost:5678/api/works")
                 projetsAffiches(appartements);
             });
 
-            const boutonHotels = document.getElementById("btn-Hotels & restaurants");
+            const boutonHotels = document.getElementById("btn-3");
             boutonHotels.addEventListener("click", function () {
                 const hotels = projets.filter(function (projet) {
                     return projet.categoryId === 3;
@@ -79,7 +79,3 @@ fetch ("http://localhost:5678/api/works")
         });
     });
 
-
-
-
-    
