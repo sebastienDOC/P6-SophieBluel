@@ -1,7 +1,7 @@
 let urlLogin = "http://localhost:5678/api/users/login";
 
-async function getData(urlLogin) {
-    return await fetch(urlLogin)
+async function getData(url) {
+    return await fetch(url)
     .then((reponse) => reponse.json())
     .then(data => {
         return data
@@ -16,8 +16,10 @@ loginButton.addEventListener("click", function(event) {
     const loginErrorMsg = document.getElementById("login-error-msg");
 
     if (email === "sophie.bluel@test.tld" && password === "S0phie") {
-        getData();
-        window.location = "./index.html"; 
+        getData(urlLogin);
+        window.location = "./index.html";
+        let test = document.getElementById('test8').innerHTML = 'Bonjour Sophie';
+        console.log(test);
     } else {
         document.log.reset();
         loginErrorMsg.style.opacity = 1;
