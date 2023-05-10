@@ -1,5 +1,5 @@
 import { getData } from './fetch.js';
-import { afficherProjet, creerBouton, tri} from './fonctions.js';
+import { afficherProjet, creerBouton, tri } from './fonctions.js';
 
 let urlProjets = "http://localhost:5678/api/works";
 let urlCategories = "http://localhost:5678/api/categories";
@@ -20,4 +20,3 @@ getData(urlProjets, projets => {
 })
 
 // -------------------------------------------------------------------------
-

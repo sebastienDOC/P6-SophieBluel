@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
 	<title>Sophie Bluel - Page de connexion</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
+    <script src="./modules/login.js" defer></script>
 </head>
 <body>
     <header>
@@ -24,12 +26,15 @@
     </header>
     <main>
         <h2 class="center">Log In</h2> 
-        <form class="login_container">
+        <div id="login-error-msg-holder">
+            <p id="login-error-msg">Email et/ou <span id="error-msg-second-line">mot de passe invalide</span></p>
+          </div>
+        <form class="login_container" method="post">
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" required>
-            <label for="name">Mot de passe</label>
-            <input type="text" name="name" id="name" required>  
-            <input type="submit" value="Se connecter">
+            <input type="text" name="email" id="email" required>
+            <label for="password">Mot de passe</label>
+            <input type="password" name="password" id="password" required> 
+            <input type="submit" value="Se connecter" id="login">
             <a class="underline" href="#">Mot de passe oublié</a>
         </form>
     </main>

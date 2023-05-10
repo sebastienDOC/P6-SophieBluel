@@ -68,3 +68,6 @@ export function tri(projets) {
         afficherProjet(hotels);
     });
 }
+
+// -------------------------------------------------------------
+
