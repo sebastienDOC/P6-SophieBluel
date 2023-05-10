@@ -8,6 +8,3 @@ export async function getData(url, callback) {
         return data
     });    
 }
-
-// -------------------------------------------------------------------------
-

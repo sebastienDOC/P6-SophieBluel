@@ -1,5 +1,14 @@
-const loginButton = document.getElementById("login");
+let urlLogin = "http://localhost:5678/api/users/login";
 
+async function getData(urlLogin) {
+    return await fetch(urlLogin)
+    .then((reponse) => reponse.json())
+    .then(data => {
+        return data
+    });    
+}
+
+const loginButton = document.getElementById("login");
 loginButton.addEventListener("click", function(event) {
     event.preventDefault();
     let email = document.getElementById("email").value;
@@ -7,10 +16,10 @@ loginButton.addEventListener("click", function(event) {
     const loginErrorMsg = document.getElementById("login-error-msg");
 
     if (email === "sophie.bluel@test.tld" && password === "S0phie") {
-        alert ("You have successfully logged in.");
+        getData();
         window.location = "./index.html"; 
     } else {
-        location.reload()
+        document.log.reset();
         loginErrorMsg.style.opacity = 1;
     }
 })
