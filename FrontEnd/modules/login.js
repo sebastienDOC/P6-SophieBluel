@@ -18,8 +18,6 @@ loginButton.addEventListener("click", function(event) {
     if (email === "sophie.bluel@test.tld" && password === "S0phie") {
         getData(urlLogin);
         window.location = "./index.html";
-        let test = document.getElementById('test8').innerHTML = 'Bonjour Sophie';
-        console.log(test);
     } else {
         document.log.reset();
         loginErrorMsg.style.opacity = 1;
