@@ -1,41 +1,6 @@
-let urlProjets = "http://localhost:5678/api/works";
-let urlCategories = "http://localhost:5678/api/categories";
-
-async function getData(url, callback) {
-    return await fetch(url)
-    .then((reponse) => reponse.json())
-    .then(data => {
-        if(callback){
-            callback(data)
-        } 
-        return data
-    });    
-}
-
-// -------------------------------------------------------------------------
-
-getData(urlProjets, projets => {
-
-    afficherProjet(projets)
-    let projetsData = projets;
-    console.log("Projets : ", projetsData);
-
-    getData(urlCategories, categories => {
-        for (i = 0; i < categories.length; i++) {
-            creerBouton(categories)
-        };
-    
-        let categoriesData = categories;
-        console.log("Catégories : ", categoriesData);
-        tri(projets);
-    })
-})
-
-// -------------------------------------------------------------------------
-
-let gallerie = document.querySelector(".gallery");
-function afficherProjet(projets) {
-    for (i = 0; i < projets.length; i++) {
+export function afficherProjet(projets) {
+    let gallerie = document.querySelector(".gallery");
+    for (var i = 0; i < projets.length; i++) {
         const figure = document.createElement("figure");
         figure.categoryId = projets[i].categoryId;
         gallerie.appendChild(figure);
@@ -48,22 +13,25 @@ function afficherProjet(projets) {
     }
 }
 
-let filtres = document.querySelector(".filtres");
-const boutonAll = document.createElement("input");
+export function creerBouton(categories) {
+    let filtres = document.querySelector(".filtres");
+
+    const boutonAll = document.createElement("input");
     filtres.appendChild(boutonAll);
     boutonAll.type = 'button';
     boutonAll.value = "Tous";
     boutonAll.id = 'btn-0';
 
-function creerBouton(categories) {
-    const bouton = document.createElement("input");
+    for (var i = 0; i < categories.length; i++) {
+        const bouton = document.createElement("input");
         filtres.appendChild(bouton);
         bouton.type = 'button';
         bouton.value = categories[i].name;
         bouton.id = `btn-${categories[i].id}`;
+    }
 }
 
-function tri(projets) {
+export function tri(projets) {
     const boutonTous = document.getElementById("btn-0");
     boutonTous.addEventListener("click", function () {
         const tous = projets.filter(function (projet) {
