@@ -1,12 +1,13 @@
 let urlLogin = "http://localhost:5678/api/users/login";
 const loginButton = document.getElementById("login");
+
 loginButton.addEventListener("click", function(event) {
     event.preventDefault()
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
     let user = {
-        email:email,
-        password:password,
+        email: email,
+        password: password,
     };
 
     fetch(urlLogin, {
@@ -20,9 +21,9 @@ loginButton.addEventListener("click", function(event) {
         return response.json()
     })
     .then(function(data){
-        sessionStorage.setItem('userId', data.userId);
-        sessionStorage.setItem('token', data.token);
-        if (email === 'sophie.bluel@test.tld' && password === 'S0phie') {
+        if (data.userId) {
+            sessionStorage.setItem('userId', data.userId);
+            sessionStorage.setItem('token', data.token);
             window.location = "./index.html";
         } else {
             document.form.reset();

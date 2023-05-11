@@ -52,15 +52,18 @@ table {
 }
 /** end reset css**/
 body {
-	max-width: 1140px;
-	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
+}
+header, main, footer {
+	max-width: 1140px;
+	margin: auto;
 }
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+	margin: 50px auto
+
 }
 section {
 	margin: 50px 0
@@ -226,20 +229,14 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em
 }
+
 /* Mode édition */
 
 #black_bar {
-	margin: auto;
-	width: 100%;
-	max-width: 1140px;
+	margin: 0;
+	padding: 0;
 	height: 60px;
 	background-color: black;
-	opacity: 0;
-	position: absolute;
-	top: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 }
 #black_bar input {
 	text-align: center;
@@ -257,6 +254,10 @@ footer nav ul {
 }
 #black_bar i {
 	color: white;
+}
+#introduction article .modifier {
+	position: relative;
+	bottom: 20px;
 }
 .introduction_modif {
 	display: flex;
@@ -279,7 +280,18 @@ footer nav ul {
 	top: 8px;
 }
 .modifier {
-	opacity: 0;
+	display: none;
+}
+.appearFlex {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.appear {
+	display: block;
+}
+.hide {
+	display: none;
 }
 
 /* Page de connexion */

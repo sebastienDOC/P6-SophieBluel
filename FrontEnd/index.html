@@ -13,14 +13,14 @@
 	<script type="module" src="./modules/main.js" defer></script>
 </head>
 <body>
-<header>
-	<div id="black_bar">
+	<div class="hide" id="black_bar">
 		<a class="edition" href="#"> 
 			<i class="fa-regular fa-pen-to-square fa-xl"></i>
 			Mode édition
 		</a>
 		<input type="button" name="changements" id="changements" value="Publier les changements">
 	</div>
+<header>
 	<h1 id="h1">Sophie Bluel <span>Architecte d'inteérieur</span></h1>
 	<nav id="nav">
 		<ul>
@@ -37,12 +37,16 @@
 			<figure>
 				<img src="./assets/images/sophie-bluel.png" alt="">
 			</figure>
-			<a class="modifier" href="#">
+			<a class="modifier" href="#modale_photo">
 				<i class="fa-regular fa-pen-to-square fa-xl"></i>
 				modifier
 			</a>
 		</div>
 		<article>
+			<a class="modifier" href="#modale_intro">
+				<i class="fa-regular fa-pen-to-square fa-xl"></i>
+				modifier
+			</a>
 			<h2>Designer d'espace</h2>
 			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
 			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
@@ -52,11 +56,17 @@
 	<section id="portfolio">
 		<div class="portfolio_modif">
 			<h2>Mes Projets</h2>
-			<a class="modifier" href="#">
+			<a class="modifier" href="#modale_gallerie">
 				<i class="fa-regular fa-pen-to-square fa-xl"></i>
 				modifier
 			</a>
 		</div>
+		<aside id="modale_gallerie" class="modale" aria-hidden="true" role="dialog">
+			<div class="modale_gallerie_wrapper">
+				<h3></h3>
+
+			</div>
+		</aside>
 		<div class="filtres">
 		</div>
 		<div class="gallery">
