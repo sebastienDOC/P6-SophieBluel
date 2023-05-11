@@ -20,21 +20,13 @@ loginButton.addEventListener("click", function(event) {
         return response.json()
     })
     .then(function(data){
-        const loginErrorMsg = document.getElementById("login-error-msg");
-        localStorage.setItem('userId', data.userId);
-        localStorage.setItem('token', data.token);
-        let userId = localStorage.getItem('userId');
-        let token = localStorage.getItem('token');
-        // let barre = document.getElementsByClassName('black_bar');
-
-        if (data.token === token) {
+        sessionStorage.setItem('userId', data.userId);
+        sessionStorage.setItem('token', data.token);
+        if (email === 'sophie.bluel@test.tld' && password === 'S0phie') {
             window.location = "./index.html";
-            console.log('UserId :', userId);
-            console.log('Token :', token);
-
-            // barre.style.opacity = 1;
         } else {
             document.form.reset();
+            const loginErrorMsg = document.getElementById("login-error-msg");
             loginErrorMsg.style.opacity = 1;
         }
     })
