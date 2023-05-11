@@ -1,5 +1,4 @@
 let urlLogin = "http://localhost:5678/api/users/login";
-
 const loginButton = document.getElementById("login");
 loginButton.addEventListener("click", function(event) {
     event.preventDefault()
@@ -22,10 +21,18 @@ loginButton.addEventListener("click", function(event) {
     })
     .then(function(data){
         const loginErrorMsg = document.getElementById("login-error-msg");
-        if (data.userId === 1) {
+        localStorage.setItem('userId', data.userId);
+        localStorage.setItem('token', data.token);
+        let userId = localStorage.getItem('userId');
+        let token = localStorage.getItem('token');
+        // let barre = document.getElementsByClassName('black_bar');
+
+        if (data.token === token) {
             window.location = "./index.html";
-            let barre = document.getElementsByClassName('black_bar');
-            barre.style.opacity = 1;
+            console.log('UserId :', userId);
+            console.log('Token :', token);
+
+            // barre.style.opacity = 1;
         } else {
             document.form.reset();
             loginErrorMsg.style.opacity = 1;
