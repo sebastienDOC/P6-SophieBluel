@@ -10,11 +10,10 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
-	<script type="module" src="./modules/main.js" defer></script>
 </head>
 <body>
 	<div class="hide" id="black_bar">
-		<a class="edition" href="#"> 
+		<a class="edition"> 
 			<i class="fa-regular fa-pen-to-square fa-xl"></i>
 			Mode édition
 		</a>
@@ -26,7 +25,7 @@
 		<ul>
 			<li>projets</li>
 			<li>contact</li>
-			<a href="./login.html"><li id="log">login</li></a>
+			<li id="log">login</li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -35,22 +34,59 @@
 	<section id="introduction">
 		<div class="introduction_modif">
 			<figure>
-				<img src="./assets/images/sophie-bluel.png" alt="">
+				<img id='photo-profil' src="./assets/images/sophie-bluel.png" alt="Photo personnelle">
 			</figure>
 			<a class="modifier" href="#modale_photo">
 				<i class="fa-regular fa-pen-to-square fa-xl"></i>
 				modifier
 			</a>
+			<aside id="modale_photo" class="modale" aria-hidden="true" style="display: none;">
+				<div class="modale_wrapper modale-stop">
+					<a class="modale-close">
+						<i class="fa-solid fa-xmark fa-xl"></i>
+					</a>
+					<h3>Photo personnelle</h3>
+					<div id="photo">
+						<label for="avatar">Choisir une photo :</label>
+						<input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
+						<div class="preview">
+							<p>Aucun fichier sélectionné pour le moment</p>
+						</div>
+					</div>
+					<div class="boutons">
+						<input id="check" class="trait" type="submit" value="Valider">
+					</div>
+				</div>
+			</aside>
 		</div>
 		<article>
 			<a class="modifier" href="#modale_intro">
 				<i class="fa-regular fa-pen-to-square fa-xl"></i>
 				modifier
 			</a>
-			<h2>Designer d'espace</h2>
-			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
-			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
-			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
+			<aside id="modale_intro" class="modale" aria-hidden="true" style="display: none;">
+				<div class="modale_wrapper modale-stop">
+					<a class="modale-close">
+						<i class="fa-solid fa-xmark fa-xl"></i>
+					</a>
+					<h3>Introduction</h3>
+					<div class="description">
+						<label for="titre-intro-modif">Titre de ma description :</label>
+						<textarea id="titre-intro-modif" name="titre-intro" rows="1" cols="30" placeholder="ex : Designer d'espace"></textarea>
+						<label for="intro-modif">Ma description :</label>
+						<textarea id="intro-modif" name="intro" rows="20" cols="30" placeholder="Mon histoire et mon métier..."></textarea>
+					</div>
+					<div class="boutons">
+						<input class="trait validation_intro" type="submit" value="Valider">
+					</div>
+				</div>
+			</aside>
+			<h2 id="titre-intro">Designer d'espace</h2>
+			<div id="intro">
+				<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
+				<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
+				<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
+			</div>
 		</article>
 	</section>
 	<section id="portfolio">
@@ -61,10 +97,19 @@
 				modifier
 			</a>
 		</div>
-		<aside id="modale_gallerie" class="modale" aria-hidden="true" role="dialog">
-			<div class="modale_gallerie_wrapper">
-				<h3></h3>
+		<aside id="modale_gallerie" class="modale" aria-hidden="true" style="display: none;">
+			<div class="modale_wrapper modale-stop">
+				<a class="modale-close">
+					<i class="fa-solid fa-xmark fa-xl"></i>
+				</a>
+				<h3>Galerie photo</h3>
+				<div>
 
+				</div>
+				<div class="boutons">
+					<input class="trait" type="submit" value="Ajouter une photo">
+					<input class="no-bg" type="submit" value="Supprimer la galerie">
+				</div>
 			</div>
 		</aside>
 		<div class="filtres">
@@ -93,5 +138,6 @@
 		</ul>
 	</nav>
 </footer>
+<script type="module" src="./modules/main.js"></script>
 </body>
 </html>

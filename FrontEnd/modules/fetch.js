@@ -6,5 +6,8 @@ export async function getData(url, callback) {
             callback(data)
         } 
         return data
-    });    
+    })
+    .catch(function(error){
+        console.error('Error:', error)
+    }); 
 }

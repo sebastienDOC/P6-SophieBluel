@@ -9,7 +9,6 @@ loginButton.addEventListener("click", function(event) {
         email: email,
         password: password,
     };
-
     fetch(urlLogin, {
         method: 'POST',
         body: JSON.stringify(user),

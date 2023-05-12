@@ -104,7 +104,9 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
-
+#log {
+	cursor: pointer;
+}
 #introduction {
 	display: flex;
 	align-items: center;
@@ -258,6 +260,10 @@ footer nav ul {
 #introduction article .modifier {
 	position: relative;
 	bottom: 20px;
+	width: 100px;
+}
+.edition {
+	cursor: default;
 }
 .introduction_modif {
 	display: flex;
@@ -292,6 +298,122 @@ footer nav ul {
 }
 .hide {
 	display: none;
+}
+/* Modales */
+
+.modale {
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: 0;
+	left: 0;
+	margin: auto;
+	width: 100%;
+	height: 100%;
+	background:rgba(0, 0, 0, 0.8);
+	animation: fadeIn 0.3s both;
+	z-index: 10000;
+}
+.modale[aria-hidden='true'] {
+	animation-name: fadeOut;
+}
+.modale_wrapper {
+	overflow: auto;
+	background-color: white;
+	width: 630px;
+	max-width: calc(100vw - 20px);
+	height: 730px;
+	max-height: calc(100vh - 20px);
+	animation:  slideFromTop 0.5s both;
+}
+.modale[aria-hidden='true'] .modale_wrapper{
+	animation-name: slideToTop;
+}
+.modale_wrapper h3 {
+	text-align: center;
+	margin: 60px 0;
+	font-size: 26px;
+	font-weight: 400;
+}
+.modale_wrapper a {
+	display: flex;
+	justify-content: flex-end;
+	position: relative;
+	top: 35px;
+	right: 35px;
+	cursor: pointer;
+}
+.boutons {
+	display: flex;
+	flex-direction: column;
+	border-top: solid 2px rgba(0, 0, 0, 0.2);
+	margin: 0 100px;
+}
+.boutons input {
+	margin: 0 auto;
+	padding: 10px;
+	border: none;
+}
+input.trait {
+	margin-top: 40px;
+}
+input.no-bg {
+	margin: 25px auto 40px;
+	background-color: transparent;
+	color: black;
+	border: none;
+}
+input.no-bg:hover {
+	background-color: white;
+	color: black;
+} 
+input.no-bg:focus {
+	background-color: white;
+	color: black;
+} 
+
+@keyframes fadeIn {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+@keyframes slideFromTop {
+	from { transform: translateY(-50px); }
+	to { transform: translateY(0); }
+}
+@keyframes fadeOut {
+	from { opacity: 1; }
+	to { opacity: 0; }
+}
+@keyframes slideToTop {
+	from { transform: translateY(0); }
+	to { transform: translateY(-50px); }
+}
+
+.description {
+	display: flex;
+	flex-direction: column;
+	padding: 0 50px;
+	gap: 20px;
+	margin-bottom: 40px;
+	
+}
+.description textarea {
+	border: 1px solid rgba(0, 0, 0, 0.2);
+}
+#photo {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+	margin-bottom: 40px;
+}
+#modale_photo input[type = 'submit']{
+	margin-bottom: 40px;
+}
+#photo p {
+	text-align: center;
+	margin-top: 10px;
 }
 
 /* Page de connexion */
