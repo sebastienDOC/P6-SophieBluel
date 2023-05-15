@@ -113,10 +113,11 @@ export function updateImageDisplay() {
 
 // -------------------------------------------------------------
 
-export function openModal(e) {
-    let modal = null
-    e.preventDefault();
-    const target = document.querySelector(e.target.getAttribute('href'))
+let modal = null
+
+export function openModal(event) {
+    event.preventDefault();
+    const target = document.querySelector(event.target.getAttribute('href'))
     target.style.display = null
     target.removeAttribute('aria-hidden')
     target.setAttribute('aria-modale', 'true')
@@ -126,10 +127,9 @@ export function openModal(e) {
     modal.querySelector('.modale-stop').addEventListener('click', stopPropagation)
 }
 
-export function closeModal(e) {
-    let modal = null
+export function closeModal(event) {
     if (modal === null) return
-    e.preventDefault()
+    event.preventDefault()
     window.setTimeout(function () {
         modal.style.display = "none"
         modal = null
@@ -141,8 +141,8 @@ export function closeModal(e) {
     modal.querySelector('.modale-stop').removeEventListener('click', stopPropagation)
 }
 
-export function stopPropagation(e) {
-    e.stopPropagation()
+export function stopPropagation(event) {
+    event.stopPropagation()
 }
 
 // -------------------------------------------------------------
