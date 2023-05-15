@@ -361,16 +361,16 @@ input.trait {
 input.no-bg {
 	margin: 25px auto 40px;
 	background-color: transparent;
-	color: black;
+	color: #D65353;
 	border: none;
 }
 input.no-bg:hover {
 	background-color: white;
-	color: black;
+	color: #D65353;
 } 
 input.no-bg:focus {
 	background-color: white;
-	color: black;
+	color: #D65353;
 } 
 
 @keyframes fadeIn {
@@ -389,6 +389,55 @@ input.no-bg:focus {
 	from { transform: translateY(0); }
 	to { transform: translateY(-50px); }
 }
+
+.gallerie-modale {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	margin: 0 100px 60px;
+	gap: 6px;
+}
+.gallerie-modale img{
+	width: 75px;
+	height: 100px;
+}
+.gallerie-modale figure {
+	position: relative;
+}
+.black-bg-trash {
+	width: 15px;
+	height: 15px;
+	background-color: black;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+.black-bg-trash i,
+.black-bg-position i {
+	color: white;
+}
+.black-bg-position {
+	width: 15px;
+	height: 15px;
+	background-color: black;
+	position: absolute;
+	top: 5px;
+	right: 25px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	display: none;
+}
+.gallerie-modale img:hover ~ .black-bg-position{
+	display: flex;
+}
+
+
 
 .description {
 	display: flex;

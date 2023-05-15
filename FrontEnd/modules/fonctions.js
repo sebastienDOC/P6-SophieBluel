@@ -71,3 +71,30 @@ export function tri(projets) {
 
 // -------------------------------------------------------------
 
+export function afficherProjetModale(projets) {
+    let gallerieModale = document.querySelector(".gallerie-modale");
+    for (var i = 0; i < projets.length; i++) {
+        const figure = document.createElement("figure");
+        figure.categoryId = projets[i].categoryId;
+        gallerieModale.appendChild(figure);
+        const image = document.createElement("img");
+        image.src = projets[i].imageUrl;
+        figure.appendChild(image);
+        const figcaption = document.createElement("figcaption");
+        figcaption.innerText = "éditer";
+        figure.appendChild(figcaption);
+        const blackBgTrash = document.createElement("div");
+        figure.appendChild(blackBgTrash);
+        blackBgTrash.classList.add("black-bg-trash");
+        const iconTrash = document.createElement("i")
+        blackBgTrash.appendChild(iconTrash);
+        iconTrash.classList.add("fa-solid", "fa-trash-can", "fa-2xs");
+        const blackBgPosition = document.createElement("div");
+        figure.appendChild(blackBgPosition);
+        blackBgPosition.classList.add("black-bg-position");
+        const iconPosition = document.createElement("i")
+        blackBgPosition.appendChild(iconPosition);
+        iconPosition.classList.add("fa-solid", "fa-up-down-left-right", "fa-2xs");
+    }
+}
+

@@ -1,8 +1,9 @@
-import { getData } from './fetch.js';
-import { afficherProjet, creerBouton, tri } from './fonctions.js';
+import { getData, deleteData, addData } from './fetch.js';
+import { afficherProjet, creerBouton, tri, afficherProjetModale } from './fonctions.js';
 
 let urlProjets = "http://localhost:5678/api/works";
 let urlCategories = "http://localhost:5678/api/categories";
+let urlDelete = "http://localhost:5678/api/works/";
 
 getData(urlProjets, projets => {
     afficherProjet(projets)
@@ -106,10 +107,19 @@ function updateImageDisplay() {
     }
 }
 
-let changeImage = function (event) {
-    let imageProfil = document.getElementById('photo-profil');
-    imageProfil.src = URL.createObjectURL(event.target.files[0]);
-};
+// let changeImage = function (event) {
+//     let imageProfil = document.getElementById('photo-profil');
+//     imageProfil.src = URL.createObjectURL(event.target.files[0]);
+// };
 
-let check = document.getElementById('check');
-check.addEventListener('click', changeImage);
+// let check = document.getElementById('check');
+// check.addEventListener('click', changeImage);
+
+// ---------------------------------------------------------------------------
+
+getData(urlProjets, projets => {
+    afficherProjetModale(projets)
+})
+
+// let deleteproject = document.getElementsByClassName('.black-bg-trash');
+// deleteproject.addEventListener('click', deleteData(urlDelete));
