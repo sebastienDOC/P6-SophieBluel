@@ -1,5 +1,5 @@
 import { getData } from './fetch.js';
-import { afficherProjet, creerBouton, tri, editionMode, afficherProjetModale, updateImageDisplay, deleteProject, openModal, closeModal, stopPropagation } from './fonctions.js';
+import { afficherProjet, creerBouton, tri, editionMode, afficherProjetModale, updateImageDisplay, deleteProject, openModal, closeModal } from './fonctions.js';
 
 //Affichage des projets et des filtres dans la gallerie
 let urlProjets = "http://localhost:5678/api/works";
@@ -48,13 +48,9 @@ inputAvatar.addEventListener('change', updateImageDisplay);
 // Gallerie modale
 getData(urlProjets, projets => {
     afficherProjetModale(projets)
-})
 
-//Suppression d'un projet modale
-window.onload = function () {
-    const trashes = document.querySelectorAll('.black-bg-trash');
-    let trash = Array.from(trashes);
-    for (let i = 0 ; i < trash.length; i++) {
-        trash[i].addEventListener('click', deleteProject)
-     }
-}
+    // Suppression d'un projet modale
+    document.querySelectorAll('.black-bg-trash').forEach(trash => {
+        trash.addEventListener('click', deleteProject)
+    })
+})

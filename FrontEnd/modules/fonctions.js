@@ -176,7 +176,6 @@ export function afficherProjetModale(projets) {
 
 export async function deleteProject(event) {
     event.preventDefault();
-    event.stopPropagation();
 
     let figure = event.target.closest("figure");
     const idFigure = figure.id;
@@ -192,7 +191,5 @@ export async function deleteProject(event) {
     });
     if (response.ok) {
         return false;
-    } else {
-        console.error("Echec de suppression du projet");
-    }
-};
+    };
+}
