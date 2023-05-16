@@ -394,7 +394,7 @@ input.no-bg:focus {
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
-	margin: 0 100px 60px;
+	margin: 0 16% 60px;
 	gap: 6px;
 }
 .gallerie-modale img{
@@ -434,6 +434,25 @@ input.no-bg:focus {
 }
 .gallerie-modale img:hover ~ .black-bg-position{
 	display: flex;
+}
+.labels {
+	display: flex;
+	flex-direction: column;
+	margin: 0 16% 40px;
+}
+.labels label {
+	margin: 0 0 10px;
+}
+.labels input {
+	height: 50px;
+	margin-bottom: 50px;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+#add-projet {
+	height: 170px;
+}
+#titre-modale-ajout {
+	margin-bottom: 20px;
 }
 
 

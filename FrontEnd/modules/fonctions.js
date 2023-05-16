@@ -175,21 +175,18 @@ export function afficherProjetModale(projets) {
 }
 
 export async function deleteProject(event) {
-    event.preventDefault();
-
+    event.preventDefault()
+    
     let figure = event.target.closest("figure");
     const idFigure = figure.id;
     let token = sessionStorage.getItem("token");
 
     let urlDelete = `http://localhost:5678/api/works/${idFigure}`;
-    let response = await fetch(urlDelete, {
+    await fetch(urlDelete, {
         method: "DELETE",
         headers: {
             accept: "*/*",
             Authorization: `Bearer ${token}`,
         },
     });
-    if (response.ok) {
-        return false;
-    };
 }

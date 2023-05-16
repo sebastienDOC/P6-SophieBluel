@@ -50,7 +50,7 @@
 						<label for="avatar">Choisir une photo :</label>
 						<input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
 						<div class="preview">
-							<p>Aucun fichier sélectionné pour le moment</p>
+							<p>Aucune image sélectionnée pour le moment</p>
 						</div>
 					</div>
 					<div class="boutons">
@@ -103,11 +103,28 @@
 					<i class="fa-solid fa-xmark fa-xl"></i>
 				</a>
 				<h3>Galerie photo</h3>
-				<div class="gallerie-modale" id="gallerie_modale">
+				<div class="gallerie-modale">
 				</div>
 				<div class="boutons">
 					<input class="trait" type="submit" value="Ajouter une photo">
 					<input id="delete" class="no-bg" type="button" value="Supprimer la galerie">
+				</div>
+			</div>
+			<div class="modale_wrapper modale-stop ">
+				<a class="modale-close">
+					<i class="fa-solid fa-xmark fa-xl"></i>
+				</a>
+				<h3>Ajout photo</h3>
+				<div class="labels">
+					<label for="add-projet">Ajouter photo</label>
+					<input type="file" id="add-projet" name="add-projet" accept="image/png, image/jpeg">
+					<label for="titre-modale-ajout">Titre</label>
+					<input type="text" id="titre-modale-ajout" name="title">
+					<label for="categories-modale-ajout">Catégories</label>
+					<input type="text" id="categories-modale-ajout" name="categories">
+					<div class="boutons">
+						<input class="trait validation_intro" type="submit" value="Valider">
+					</div>
 				</div>
 			</div>
 		</aside>

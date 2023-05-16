@@ -49,8 +49,11 @@ inputAvatar.addEventListener('change', updateImageDisplay);
 getData(urlProjets, projets => {
     afficherProjetModale(projets)
 
-    // Suppression d'un projet modale
+    // Suppression d'un projet dans la modale
     document.querySelectorAll('.black-bg-trash').forEach(trash => {
         trash.addEventListener('click', deleteProject)
     })
+
+    // Ajout d'un projet dans la modale
+    
 })
