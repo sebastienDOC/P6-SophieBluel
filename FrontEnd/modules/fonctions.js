@@ -104,16 +104,25 @@ export function openModal(event) {
     target.setAttribute('aria-modale', 'true')
     modal = target
     modal.addEventListener('click', closeModal)
-    modal.querySelector('.modale-close-1').addEventListener('click', closeModal)
-    modal.querySelector('.modale-close-2').addEventListener('click', closeModal)
-    modal.querySelector('.modale-stop-1').addEventListener('click', stopPropagation)
-    modal.querySelector('.modale-stop-2').addEventListener('click', stopPropagation)
+    if (modal.querySelector('.modale-close') != null) {
+        modal.querySelector('.modale-close').addEventListener('click', closeModal)
+        modal.querySelector('.modale-stop').addEventListener('click', stopPropagation)
+    }
+    if (modal.querySelector('.modale-close-1') != null) {
+        modal.querySelector('.modale-close-1').addEventListener('click', closeModal)
+        modal.querySelector('.modale-close-2').addEventListener('click', closeModal)
+        modal.querySelector('.modale-stop-1').addEventListener('click', stopPropagation)
+        modal.querySelector('.modale-stop-2').addEventListener('click', stopPropagation)
+    }
+    modal.addEventListener('click', function() {
+        document.getElementById('form').reset();
+    })
 }
 
 export function closeModal(event) {
+    event.preventDefault()
     let modale1 = document.getElementById('modale-1')
     let modale2 = document.getElementById('modale-2')
-    event.preventDefault()
     if (modal === null) return
     window.setTimeout(function () {
         modal.style.display = "none"
@@ -124,10 +133,19 @@ export function closeModal(event) {
     modal.removeEventListener('click', closeModal)
     modale2.classList.remove('anim-right')
     modale1.classList.remove('anim-left')
-    modal.querySelector('.modale-close-1').removeEventListener('click', closeModal)
-    modal.querySelector('.modale-close-2').removeEventListener('click', closeModal)
-    modal.querySelector('.modale-stop-1').removeEventListener('click', stopPropagation)
-    modal.querySelector('.modale-stop-2').removeEventListener('click', stopPropagation)
+    if (modal.querySelector('.modale-close') != null) {
+        modal.querySelector('.modale-close').removeEventListener('click', closeModal)
+        modal.querySelector('.modale-stop').removeEventListener('click', stopPropagation)
+    }
+    if (modal.querySelector('.modale-close-1') != null) {
+        modal.querySelector('.modale-close-1').removeEventListener('click', closeModal)
+        modal.querySelector('.modale-close-2').removeEventListener('click', closeModal)
+        modal.querySelector('.modale-stop-1').removeEventListener('click', stopPropagation)
+        modal.querySelector('.modale-stop-2').removeEventListener('click', stopPropagation)
+        modale1.classList.remove('hide');
+        modale2.classList.add('hide');
+    }
+    
 }
 
 export function stopPropagation(event) {
@@ -187,6 +205,56 @@ export async function deleteProject(event) {
     })
 }
 
+export async function addProject(event){
+    event.preventDefault()
+    let image = document.getElementById("add-projet").files;
+    let title = document.getElementById("titre-modale-ajout").value;
+    let categoryId = document.getElementById("categories-modale-ajout").value;
+    let token = sessionStorage.getItem("token");
+    
+    const formData = new FormData();
+    formData.append("image", image[0]);
+    formData.append("title", title);
+    formData.append("category", categoryId);
+
+    let urlAdd = 'http://localhost:5678/api/works';
+
+    await fetch(urlAdd, {
+        method: "POST",
+        body: formData,
+        headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+    })
+    document.querySelector(".gallery").innerHTML = "";
+    document.querySelector(".gallerie-modale").innerHTML = "";
+    getData(urlAdd, projets => {
+        afficherProjet(projets)
+        afficherProjetModale(projets)
+    })
+}
+
+
+export function updateImageDisplay() {
+    let addProjet = document.getElementById('add-projet')
+    let preview = document.querySelector('.preview');
+    while(preview.firstChild) {
+        preview.removeChild(preview.firstChild);
+    }
+
+    let files = addProjet.files;
+    let list = document.createElement('ol');
+    preview.appendChild(list);
+    for(let i = 0; i < files.length; i++) {
+        let listItem = document.createElement('li');
+        let image = document.createElement('img');
+        image.src = window.URL.createObjectURL(files[i]);
+        listItem.appendChild(image);
+        list.appendChild(listItem);
+    }
+}
+
 export function navModal() {
     let modale1 = document.getElementById('modale-1')
     let modale2 = document.getElementById('modale-2')
@@ -203,27 +271,6 @@ export function navModal() {
         modale2.classList.toggle('hide');
         modale1.classList.add('anim-left')
     })
-
 }
-
 
 // -------------------------------------------------------------
-
-export function updateImageDisplay() {
-    let inputAvatar = document.getElementById('avatar')
-    let preview = document.querySelector('.preview');
-    while(preview.firstChild) {
-        preview.removeChild(preview.firstChild);
-    }
-
-    let files = inputAvatar.files;
-    let list = document.createElement('ol');
-    preview.appendChild(list);
-    for(let i = 0; i < files.length; i++) {
-        let listItem = document.createElement('li');
-        let image = document.createElement('img');
-        image.src = window.URL.createObjectURL(files[i]);
-        listItem.appendChild(image);
-        list.appendChild(listItem);
-    }
-}

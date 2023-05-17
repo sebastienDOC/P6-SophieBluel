@@ -1,5 +1,5 @@
 import { getData } from './fetch.js';
-import { afficherProjet, creerBouton, tri, editionMode, afficherProjetModale, updateImageDisplay, deleteProject, openModal, closeModal, navModal } from './fonctions.js';
+import { afficherProjet, creerBouton, tri, editionMode, afficherProjetModale, updateImageDisplay, deleteProject, addProject, openModal, closeModal, navModal } from './fonctions.js';
 
 //Affichage des projets et des filtres dans la gallerie
 let urlProjets = "http://localhost:5678/api/works";
@@ -37,11 +37,12 @@ window.addEventListener('keydown', function (event) {
     }
 })
 
+
 // ------------------------------------------------------------------------
 
 // Aperçu changement image personnelle modale 
-let inputAvatar = document.getElementById('avatar');
-inputAvatar.addEventListener('change', updateImageDisplay);
+let addProjet = document.getElementById('add-projet');
+addProjet.addEventListener('change', updateImageDisplay);
 
 // ---------------------------------------------------------------------------
 
@@ -58,5 +59,6 @@ getData(urlProjets, projets => {
     navModal();
     
     // Ajout d'un projet dans la modale
-    
+    document.querySelector('#upload').addEventListener('click', addProject)
+    document.querySelector('#upload').addEventListener('click', closeModal)
 })

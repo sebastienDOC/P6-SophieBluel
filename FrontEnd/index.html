@@ -46,13 +46,7 @@
 						<i class="fa-solid fa-xmark fa-xl"></i>
 					</a>
 					<h3>Photo personnelle</h3>
-					<div id="photo">
-						<label for="avatar">Choisir une photo :</label>
-						<input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
-						<div class="preview">
-							<p>Aucune image sélectionnée pour le moment</p>
-						</div>
-					</div>
+					
 					<div class="boutons">
 						<input id="check" class="trait" type="submit" value="Valider">
 					</div>
@@ -119,14 +113,23 @@
 				</a>
 				<h3>Ajout photo</h3>
 				<div class="labels">
-					<label for="add-projet">Ajouter photo</label>
-					<input type="file" class="#" id="add-projet" name="add-projet" accept="image/png, image/jpeg">
-					<label for="titre-modale-ajout">Titre</label>
-					<input type="text" id="titre-modale-ajout" name="title">
-					<label for="categories-modale-ajout">Catégories</label>
-					<input type="text" id="categories-modale-ajout" name="categories">
+					<form id="form">
+						<div class="add-projet">
+							<input type="file" id="add-projet" name="add-projet" accept="image/png, image/jpeg" required>
+							<div id="photo" class="preview">
+								<i class="fa-regular fa-image fa-2xl"></i>
+								<div class="ajouter">+ Ajouter photo</div>
+								<p>jpg, png : 4Mo max</p>
+								<input type="hidden" name="MAX_FILE_SIZE" value="4194304" />
+							</div>
+						</div>
+						<label for="titre-modale-ajout">Titre</label>
+						<input type="text" id="titre-modale-ajout" name="title" required>
+						<label for="categories-modale-ajout">Catégories</label>
+						<input type="number" id="categories-modale-ajout" name="categories" min="1" max="3" required>
+					</form>
 					<div class="boutons">
-						<input class="trait validation" type="submit" value="Valider">
+						<input id="upload" class="trait validation" type="submit" value="Valider">
 					</div>
 				</div>
 			</div>
