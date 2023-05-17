@@ -1,6 +1,8 @@
+import { getData } from './fetch.js';
+
 export function afficherProjet(projets) {
     let gallerie = document.querySelector(".gallery");
-    for (var i = 0; i < projets.length; i++) {
+    for (let i = 0; i < projets.length; i++) {
         const figure = document.createElement("figure");
         figure.categoryId = projets[i].categoryId;
         gallerie.appendChild(figure);
@@ -22,7 +24,7 @@ export function creerBouton(categories) {
     boutonAll.value = "Tous";
     boutonAll.id = 'btn-0';
 
-    for (var i = 0; i < categories.length; i++) {
+    for (let i = 0; i < categories.length; i++) {
         const bouton = document.createElement("input");
         filtres.appendChild(bouton);
         bouton.type = 'button';
@@ -87,27 +89,6 @@ export function editionMode() {
         modifs.forEach(modif => {
             modif.classList.toggle('appear');
         });
-    }
-}
-
-// -------------------------------------------------------------
-
-export function updateImageDisplay() {
-    let inputAvatar = document.getElementById('avatar')
-    let preview = document.querySelector('.preview');
-    while(preview.firstChild) {
-        preview.removeChild(preview.firstChild);
-    }
-
-    let files = inputAvatar.files;
-    let list = document.createElement('ol');
-    preview.appendChild(list);
-    for(let i = 0; i < files.length; i++) {
-        let listItem = document.createElement('li');
-        let image = document.createElement('img');
-        image.src = window.URL.createObjectURL(files[i]);
-        listItem.appendChild(image);
-        list.appendChild(listItem);
     }
 }
 
@@ -189,4 +170,32 @@ export async function deleteProject(event) {
             Authorization: `Bearer ${token}`,
         },
     });
+    figure.remove();
+
+    let urlProjets = "http://localhost:5678/api/works";
+    document.querySelector(".gallery").innerHTML = "";
+    getData(urlProjets, projets => {
+        afficherProjet(projets)
+    })
+}
+
+// -------------------------------------------------------------
+
+export function updateImageDisplay() {
+    let inputAvatar = document.getElementById('avatar')
+    let preview = document.querySelector('.preview');
+    while(preview.firstChild) {
+        preview.removeChild(preview.firstChild);
+    }
+
+    let files = inputAvatar.files;
+    let list = document.createElement('ol');
+    preview.appendChild(list);
+    for(let i = 0; i < files.length; i++) {
+        let listItem = document.createElement('li');
+        let image = document.createElement('img');
+        image.src = window.URL.createObjectURL(files[i]);
+        listItem.appendChild(image);
+        list.appendChild(listItem);
+    }
 }
