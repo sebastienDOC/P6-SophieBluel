@@ -1,5 +1,5 @@
 import { getData } from './fetch.js';
-import { afficherProjet, creerBouton, tri, editionMode, afficherProjetModale, updateImageDisplay, deleteProject, openModal, closeModal } from './fonctions.js';
+import { afficherProjet, creerBouton, tri, editionMode, afficherProjetModale, updateImageDisplay, deleteProject, openModal, closeModal, navModal } from './fonctions.js';
 
 //Affichage des projets et des filtres dans la gallerie
 let urlProjets = "http://localhost:5678/api/works";
@@ -54,6 +54,9 @@ getData(urlProjets, projets => {
         trash.addEventListener('click', deleteProject)
     })
 
+    // Navigation modale ajout photo
+    navModal();
+    
     // Ajout d'un projet dans la modale
     
 })

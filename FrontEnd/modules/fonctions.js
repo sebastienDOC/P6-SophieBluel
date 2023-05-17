@@ -104,13 +104,17 @@ export function openModal(event) {
     target.setAttribute('aria-modale', 'true')
     modal = target
     modal.addEventListener('click', closeModal)
-    modal.querySelector('.modale-close').addEventListener('click', closeModal)
-    modal.querySelector('.modale-stop').addEventListener('click', stopPropagation)
+    modal.querySelector('.modale-close-1').addEventListener('click', closeModal)
+    modal.querySelector('.modale-close-2').addEventListener('click', closeModal)
+    modal.querySelector('.modale-stop-1').addEventListener('click', stopPropagation)
+    modal.querySelector('.modale-stop-2').addEventListener('click', stopPropagation)
 }
 
 export function closeModal(event) {
-    if (modal === null) return
+    let modale1 = document.getElementById('modale-1')
+    let modale2 = document.getElementById('modale-2')
     event.preventDefault()
+    if (modal === null) return
     window.setTimeout(function () {
         modal.style.display = "none"
         modal = null
@@ -118,8 +122,12 @@ export function closeModal(event) {
     modal.setAttribute('aria-hidden', 'true')
     modal.removeAttribute('aria-modale')
     modal.removeEventListener('click', closeModal)
-    modal.querySelector('.modale-close').removeEventListener('click', closeModal)
-    modal.querySelector('.modale-stop').removeEventListener('click', stopPropagation)
+    modale2.classList.remove('anim-right')
+    modale1.classList.remove('anim-left')
+    modal.querySelector('.modale-close-1').removeEventListener('click', closeModal)
+    modal.querySelector('.modale-close-2').removeEventListener('click', closeModal)
+    modal.querySelector('.modale-stop-1').removeEventListener('click', stopPropagation)
+    modal.querySelector('.modale-stop-2').removeEventListener('click', stopPropagation)
 }
 
 export function stopPropagation(event) {
@@ -178,6 +186,26 @@ export async function deleteProject(event) {
         afficherProjet(projets)
     })
 }
+
+export function navModal() {
+    let modale1 = document.getElementById('modale-1')
+    let modale2 = document.getElementById('modale-2')
+
+    let addButton = document.getElementById('ajouter')
+    addButton.addEventListener('click', function(){
+        modale1.classList.toggle('hide');
+        modale2.classList.toggle('hide');
+        modale2.classList.add('anim-right')
+    })
+    let backButton = document.querySelector('.modale-back')
+    backButton.addEventListener('click', function(){
+        modale1.classList.toggle('hide');
+        modale2.classList.toggle('hide');
+        modale1.classList.add('anim-left')
+    })
+
+}
+
 
 // -------------------------------------------------------------
 

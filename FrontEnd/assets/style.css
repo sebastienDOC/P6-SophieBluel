@@ -332,16 +332,23 @@ footer nav ul {
 }
 .modale_wrapper h3 {
 	text-align: center;
-	margin: 60px 0;
+	margin: 50px 0 30px;
 	font-size: 26px;
 	font-weight: 400;
 }
-.modale_wrapper a {
+.modale_wrapper .fa-xmark {
 	display: flex;
 	justify-content: flex-end;
 	position: relative;
 	top: 35px;
 	right: 35px;
+	cursor: pointer;
+}
+.modale_wrapper .fa-arrow-left {
+	display: flex;
+	position: relative;
+	top: 35px;
+	left: 35px;
 	cursor: pointer;
 }
 .boutons {
@@ -372,7 +379,12 @@ input.no-bg:focus {
 	background-color: white;
 	color: #D65353;
 } 
-
+.anim-right {
+	animation: slideToRight .75s both;
+}
+.anim-left {
+	animation: slideToLeft .75s both;
+}
 @keyframes fadeIn {
 	from { opacity: 0; }
 	to { opacity: 1; }
@@ -389,7 +401,26 @@ input.no-bg:focus {
 	from { transform: translateY(0); }
 	to { transform: translateY(-50px); }
 }
-
+@keyframes slideToRight {
+	from { 
+		transform: translateX(-50px); 
+		opacity: 1;
+	}
+	to { 
+		transform: translateX(0); 
+		opacity: 1;
+	}
+}
+@keyframes slideToLeft {
+	from { 
+		transform: translateX(50px);
+		opacity: 1;
+	}
+	to { 
+		transform: translateX(0); 
+		opacity: 1;
+	}
+}
 .gallerie-modale {
 	display: flex;
 	align-items: center;
@@ -435,21 +466,32 @@ input.no-bg:focus {
 .gallerie-modale img:hover ~ .black-bg-position{
 	display: flex;
 }
+#modale-2 {
+	overflow: hidden;
+}
 .labels {
 	display: flex;
 	flex-direction: column;
-	margin: 0 16% 40px;
+	margin: 0 16%;
 }
 .labels label {
 	margin: 0 0 10px;
 }
 .labels input {
 	height: 50px;
-	margin-bottom: 50px;
+	margin-bottom: 40px;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 #add-projet {
 	height: 170px;
+	background: #E8F1F7;
+	border-radius: 3px;
+}
+#add-projet input {
+	opacity: 0;
+}
+input.trait.validation {
+	height: 35px;
 }
 #titre-modale-ajout {
 	margin-bottom: 20px;
