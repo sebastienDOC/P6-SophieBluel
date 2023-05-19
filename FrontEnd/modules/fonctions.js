@@ -156,7 +156,7 @@ export function stopPropagation(event) {
 
 export function afficherProjetModale(projets) {
     let gallerieModale = document.querySelector(".gallerie-modale");
-    for (var i = 0; i < projets.length; i++) {
+    for (let i = 0; i < projets.length; i++) {
         const figure = document.createElement("figure");
         figure.id = projets[i].id;
         gallerieModale.appendChild(figure);
@@ -181,6 +181,11 @@ export function afficherProjetModale(projets) {
     }
 }
 
+// ---------------------------------------------------------------
+
+let urlProjets = "http://localhost:5678/api/works";
+let urlAdd = 'http://localhost:5678/api/works';
+
 export async function deleteProject(event) {
     event.preventDefault()
     
@@ -197,27 +202,20 @@ export async function deleteProject(event) {
         },
     });
     figure.remove();
-
-    let urlProjets = "http://localhost:5678/api/works";
-    document.querySelector(".gallery").innerHTML = "";
-    getData(urlProjets, projets => {
-        afficherProjet(projets)
-    })
+    addElements(urlProjets);
 }
 
 export async function addProject(event){
     event.preventDefault()
     let image = document.getElementById("add-projet").files;
     let title = document.getElementById("titre-modale-ajout").value;
-    let categoryId = document.getElementById("categories-modale-ajout").value;
+    let categoryId = document.getElementById("categories").value;
     let token = sessionStorage.getItem("token");
     
     const formData = new FormData();
     formData.append("image", image[0]);
     formData.append("title", title);
     formData.append("category", categoryId);
-
-    let urlAdd = 'http://localhost:5678/api/works';
 
     await fetch(urlAdd, {
         method: "POST",
@@ -227,32 +225,20 @@ export async function addProject(event){
             Authorization: `Bearer ${token}`,
         },
     })
-    document.querySelector(".gallery").innerHTML = "";
-    document.querySelector(".gallerie-modale").innerHTML = "";
-    getData(urlAdd, projets => {
-        afficherProjet(projets)
-        afficherProjetModale(projets)
-    })
+    addElements(urlAdd);
 }
 
+function addElements(url) {
+    document.querySelector(".gallery").innerHTML = "";
+    document.querySelector(".gallerie-modale").innerHTML = "";
+    getData(url, projets => {
+        afficherProjet(projets)
+        afficherProjetModale(projets)
 
-export function updateImageDisplay() {
-    let addProjet = document.getElementById('add-projet')
-    let preview = document.querySelector('.preview');
-    while(preview.firstChild) {
-        preview.removeChild(preview.firstChild);
-    }
-
-    let files = addProjet.files;
-    let list = document.createElement('ol');
-    preview.appendChild(list);
-    for(let i = 0; i < files.length; i++) {
-        let listItem = document.createElement('li');
-        let image = document.createElement('img');
-        image.src = window.URL.createObjectURL(files[i]);
-        listItem.appendChild(image);
-        list.appendChild(listItem);
-    }
+        document.querySelectorAll('.black-bg-trash').forEach(trash => {
+            trash.addEventListener('click', deleteProject)
+        })
+    })
 }
 
 export function navModal() {
@@ -274,3 +260,29 @@ export function navModal() {
 }
 
 // -------------------------------------------------------------
+
+export function showPreview() {
+    let addProjet = document.getElementById('add-projet')
+    let preview = document.querySelector('.preview');
+    while(preview.firstChild) {
+        preview.removeChild(preview.firstChild);
+    }
+
+    let files = addProjet.files;
+    let list = document.createElement('ul');
+    preview.appendChild(list);
+    for(let i = 0; i < files.length; i++) {
+        let listItem = document.createElement('li');
+        let image = document.createElement('img');
+        image.src = window.URL.createObjectURL(files[i]);
+        listItem.appendChild(image);
+        list.appendChild(listItem);
+    }
+}
+
+//----------------------------------------------------------------
+
+export function logout() {
+    sessionStorage.removeItem('userId');
+    sessionStorage.removeItem('token');
+}

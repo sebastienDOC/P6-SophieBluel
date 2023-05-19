@@ -1,5 +1,5 @@
 import { getData } from './fetch.js';
-import { afficherProjet, creerBouton, tri, editionMode, afficherProjetModale, updateImageDisplay, deleteProject, addProject, openModal, closeModal, navModal } from './fonctions.js';
+import { afficherProjet, creerBouton, tri, editionMode, afficherProjetModale, showPreview, deleteProject, addProject, openModal, closeModal, navModal, logout } from './fonctions.js';
 
 //Affichage des projets et des filtres dans la gallerie
 let urlProjets = "http://localhost:5678/api/works";
@@ -22,7 +22,22 @@ log.addEventListener('click', function() {
     window.location = "./login.html"
 })
 
+// Mode édition
 editionMode();
+
+// Logout
+let publish = document.getElementById('changements');
+publish.addEventListener('click', function() {
+        logout();
+        window.location = "./index.html";
+})
+
+log.addEventListener('click', function() {
+    if (log.innerHTML === 'logout') {
+        logout();
+        window.location = "./index.html";
+    }
+})
 
 // ----------------------------------------------------------------------------
 
@@ -37,12 +52,11 @@ window.addEventListener('keydown', function (event) {
     }
 })
 
-
 // ------------------------------------------------------------------------
 
 // Aperçu changement image personnelle modale 
 let addProjet = document.getElementById('add-projet');
-addProjet.addEventListener('change', updateImageDisplay);
+addProjet.addEventListener('change', showPreview);
 
 // ---------------------------------------------------------------------------
 
@@ -50,15 +64,22 @@ addProjet.addEventListener('change', updateImageDisplay);
 getData(urlProjets, projets => {
     afficherProjetModale(projets)
 
-    // Suppression d'un projet dans la modale
-    document.querySelectorAll('.black-bg-trash').forEach(trash => {
-        trash.addEventListener('click', deleteProject)
-    })
-
     // Navigation modale ajout photo
     navModal();
     
     // Ajout d'un projet dans la modale
     document.querySelector('#upload').addEventListener('click', addProject)
-    document.querySelector('#upload').addEventListener('click', closeModal)
+    document.querySelector('#upload').addEventListener('click', function(){
+        document.getElementById('modale-1').classList.toggle('hide');
+        document.getElementById('modale-2').classList.toggle('hide');
+        document.getElementById('modale-1').classList.add('anim-left')
+    })
+
+    // Suppression d'un projet dans la modale
+    document.querySelectorAll('.black-bg-trash').forEach(trash => {
+        trash.addEventListener('click', deleteProject)
+    })
 })
+
+// -----------------------------------------------------------------------------
+

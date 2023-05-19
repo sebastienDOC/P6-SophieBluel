@@ -34,3 +34,5 @@ loginButton.addEventListener("click", function(event) {
         console.error('Error:', error)
     }); 
 });
+
+// -------------------------------------------------------------
