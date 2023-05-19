@@ -241,22 +241,26 @@ function addElements(url) {
     })
 }
 
-export function navModal() {
-    let modale1 = document.getElementById('modale-1')
-    let modale2 = document.getElementById('modale-2')
+// --------------------------------------------------------------
 
+let modale1 = document.getElementById('modale-1')
+let modale2 = document.getElementById('modale-2')
+export function navModal() {
     let addButton = document.getElementById('ajouter')
-    addButton.addEventListener('click', function(){
-        modale1.classList.toggle('hide');
-        modale2.classList.toggle('hide');
-        modale2.classList.add('anim-right')
-    })
+    addButton.addEventListener('click', modaleNext)
     let backButton = document.querySelector('.modale-back')
-    backButton.addEventListener('click', function(){
-        modale1.classList.toggle('hide');
-        modale2.classList.toggle('hide');
-        modale1.classList.add('anim-left')
-    })
+    backButton.addEventListener('click', modaleBefore)
+}
+
+function modaleNext() {
+    modale1.classList.toggle('hide');
+    modale2.classList.toggle('hide');
+    modale2.classList.add('anim-right')
+}
+export function modaleBefore() {
+    modale1.classList.toggle('hide');
+    modale2.classList.toggle('hide');
+    modale1.classList.add('anim-left')
 }
 
 // -------------------------------------------------------------
@@ -279,6 +283,25 @@ export function showPreview() {
         list.appendChild(listItem);
     }
 }
+
+// export function showPreviewPhoto() {
+//     let addPhoto = document.getElementById('add-photo')
+//     let preview = document.querySelector('.preview-photo');
+//     while(preview.firstChild) {
+//         preview.removeChild(preview.firstChild);
+//     }
+
+//     let files = addPhoto.files;
+//     let list = document.createElement('ul');
+//     preview.appendChild(list);
+//     for(let i = 0; i < files.length; i++) {
+//         let listItem = document.createElement('li');
+//         let image = document.createElement('img');
+//         image.src = window.URL.createObjectURL(files[i]);
+//         listItem.appendChild(image);
+//         list.appendChild(listItem);
+//     }
+// }
 
 //----------------------------------------------------------------
 

@@ -46,7 +46,15 @@
 						<i class="fa-solid fa-xmark fa-xl"></i>
 					</a>
 					<h3>Photo personnelle</h3>
-					
+					<div class="add-photo">
+						<input type="file" id="add-photo" name="add-photo" accept="image/png, image/jpeg" required>
+						<div id="photo-perso" class="preview-photo">
+							<i class="fa-regular fa-image fa-2xl"></i>
+							<div class="ajouter">+ Ajouter photo</div>
+							<p>jpg, png : 4Mo max</p>
+							<input type="hidden" name="MAX_FILE_SIZE" value="4194304" />
+						</div>
+					</div>
 					<div class="boutons">
 						<input id="check" class="trait" type="submit" value="Valider">
 					</div>

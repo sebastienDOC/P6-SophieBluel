@@ -1,5 +1,5 @@
 import { getData } from './fetch.js';
-import { afficherProjet, creerBouton, tri, editionMode, afficherProjetModale, showPreview, deleteProject, addProject, openModal, closeModal, navModal, logout } from './fonctions.js';
+import { afficherProjet, creerBouton, tri, editionMode, afficherProjetModale, showPreview, deleteProject, addProject, openModal, closeModal, navModal, modaleBefore, logout } from './fonctions.js';
 
 //Affichage des projets et des filtres dans la gallerie
 let urlProjets = "http://localhost:5678/api/works";
@@ -54,9 +54,13 @@ window.addEventListener('keydown', function (event) {
 
 // ------------------------------------------------------------------------
 
-// Aperçu changement image personnelle modale 
+// Aperçu ajout projet
 let addProjet = document.getElementById('add-projet');
 addProjet.addEventListener('change', showPreview);
+
+// Aperçu changement image personnelle modale 
+// let changePhoto = document.getElementById('add-photo');
+// changePhoto.addEventListener('change', showPreviewPhoto);
 
 // ---------------------------------------------------------------------------
 
@@ -69,11 +73,7 @@ getData(urlProjets, projets => {
     
     // Ajout d'un projet dans la modale
     document.querySelector('#upload').addEventListener('click', addProject)
-    document.querySelector('#upload').addEventListener('click', function(){
-        document.getElementById('modale-1').classList.toggle('hide');
-        document.getElementById('modale-2').classList.toggle('hide');
-        document.getElementById('modale-1').classList.add('anim-left')
-    })
+    document.querySelector('#upload').addEventListener('click', modaleBefore)
 
     // Suppression d'un projet dans la modale
     document.querySelectorAll('.black-bg-trash').forEach(trash => {
@@ -82,4 +82,3 @@ getData(urlProjets, projets => {
 })
 
 // -----------------------------------------------------------------------------
-

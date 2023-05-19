@@ -283,8 +283,8 @@ footer nav ul {
 	justify-content: center;
 }
 .portfolio_modif a {
-	position: absolute;
-	right: 30%;
+	position: relative;
+	left: 20px ;
 	top: 8px;
 }
 .modifier {
@@ -386,7 +386,7 @@ input.no-bg:focus {
 	animation: fadeInModale 1s both;
 }
 .anim-left {
-	animation: fadeInModale 1s both;
+	animation: fadeOutModale 1s both;
 }
 @keyframes fadeIn {
 	from { opacity: 0.8; }
@@ -398,6 +398,18 @@ input.no-bg:focus {
 	}
 	35%{
 		scale: 1.2;
+	}
+	100% { 
+		opacity: 1; 
+		scale: 1;
+	}
+}
+@keyframes fadeOutModale {
+	0% { 
+		opacity: 0.8; 
+	}
+	35%{
+		scale: 0.8;
 	}
 	100% { 
 		opacity: 1; 
@@ -481,14 +493,16 @@ input.no-bg:focus {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-.labels i {
+.labels i,
+.add-photo i {
 	color: #B9C5CC;
 	display: flex;
 	justify-content: center;
 	margin: 15px;
 	scale: 1.5;
 }
-.add-projet {
+.add-projet,
+.add-photo {
 	margin: 0 0 30px;
 	height: 170px;
 	background: #E8F1F7;
@@ -501,7 +515,11 @@ input.no-bg:focus {
 	flex-direction: column;
 	position: relative;
 }
-input#add-projet {
+.add-photo {
+	margin: 0 105px 30px;
+}
+input#add-projet,
+input#add-photo {
 	cursor: pointer;
 	width: 100%;
 	height: 100%;
@@ -515,22 +533,27 @@ input.trait.validation {
 	font-family: 'Work Sans' ;
 	margin-bottom: 20px;
 }
-#photo {
+#photo,
+#photo-perso {
 	display: flex;
 	flex-direction: column;
 	text-align: center;
 	gap: 20px;
 }
-#photo.preview {
+#photo.preview,
+#photo-perso.preview-photo {
 	position: absolute;
 	z-index: -100;
 }
-#photo.preview p {
+#photo.preview p,
+#photo-perso.preview-photo p {
 	font-size: 10px;
 	color : #444444;
-	margin: 0;
+	text-align: center;
+	margin: 10px 0 0 0 ;
 }
-.preview .ajouter {
+.preview .ajouter,
+.preview-photo .ajouter {
 	display: flex;
 	align-items: center;
 	text-align: center;
@@ -544,9 +567,11 @@ input.trait.validation {
 	border-radius: 50px;
 	z-index: -100;
 }
-.preview img {
+.preview img,
+.preview-photo img {
 	width: 100%;
 	height: 170px;
+	object-fit: cover;
 }
 
 /* Modales additionnelles */
@@ -556,8 +581,7 @@ input.trait.validation {
 	flex-direction: column;
 	padding: 0 50px;
 	gap: 20px;
-	margin-bottom: 40px;
-	
+	margin-bottom: 40px;	
 }
 .description textarea {
 	border: 1px solid rgba(0, 0, 0, 0.2);
@@ -566,10 +590,7 @@ input.trait.validation {
 #modale_photo input[type = 'submit']{
 	margin-bottom: 40px;
 }
-#photo p {
-	text-align: center;
-	margin-top: 10px;
-}
+
 
 /* Page de connexion */
 
