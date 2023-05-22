@@ -2,17 +2,17 @@ import { getData } from './fetch.js';
 
 export function afficherProjet(projets) {
     let gallerie = document.querySelector(".gallery");
-    for (let i = 0; i < projets.length; i++) {
+    projets.forEach(projet => {
         const figure = document.createElement("figure");
-        figure.categoryId = projets[i].categoryId;
+        figure.categoryId = projet.categoryId;
         gallerie.appendChild(figure);
         const image = document.createElement("img");
-        image.src = projets[i].imageUrl;
+        image.src = projet.imageUrl;
         figure.appendChild(image);
         const figcaption = document.createElement("figcaption");
-        figcaption.innerText = projets[i].title;
+        figcaption.innerText = projet.title;
         figure.appendChild(figcaption);
-    }
+    })
 }
 
 export function creerBouton(categories) {
@@ -23,14 +23,14 @@ export function creerBouton(categories) {
     boutonAll.type = 'button';
     boutonAll.value = "Tous";
     boutonAll.id = 'btn-0';
-
-    for (let i = 0; i < categories.length; i++) {
+    
+    categories.forEach(categorie => {
         const bouton = document.createElement("input");
         filtres.appendChild(bouton);
         bouton.type = 'button';
-        bouton.value = categories[i].name;
-        bouton.id = `btn-${categories[i].id}`;
-    }
+        bouton.value = categorie.name;
+        bouton.id = `btn-${categorie.id}`;
+    })
 }
 
 export function tri(projets) {
@@ -70,6 +70,7 @@ export function tri(projets) {
         afficherProjet(hotels);
     });
 }
+
 // -------------------------------------------------------------
 
 export function editionMode() {
@@ -82,8 +83,6 @@ export function editionMode() {
         barre.classList.toggle('appearFlex');
         let filtre = document.querySelector(".filtres");
         filtre.classList.toggle('hide');
-        let gallery = document.querySelector(".gallery");
-        gallery.style.margin = '70px 0 0 0';
         let modifier = document.querySelectorAll(".modifier");
         let modifs = Array.from(modifier);
         modifs.forEach(modif => {
@@ -156,12 +155,12 @@ export function stopPropagation(event) {
 
 export function afficherProjetModale(projets) {
     let gallerieModale = document.querySelector(".gallerie-modale");
-    for (let i = 0; i < projets.length; i++) {
+    projets.forEach(projet => {
         const figure = document.createElement("figure");
-        figure.id = projets[i].id;
+        figure.id = projet.id;
         gallerieModale.appendChild(figure);
         const image = document.createElement("img");
-        image.src = projets[i].imageUrl;
+        image.src = projet.imageUrl;
         figure.appendChild(image);
         const figcaption = document.createElement("figcaption");
         figcaption.innerText = "éditer";
@@ -178,7 +177,7 @@ export function afficherProjetModale(projets) {
         const iconPosition = document.createElement("i")
         blackBgPosition.appendChild(iconPosition);
         iconPosition.classList.add("fa-solid", "fa-up-down-left-right", "fa-2xs");
-    }
+    })
 }
 
 // ---------------------------------------------------------------
@@ -283,25 +282,6 @@ export function showPreview() {
         list.appendChild(listItem);
     }
 }
-
-// export function showPreviewPhoto() {
-//     let addPhoto = document.getElementById('add-photo')
-//     let preview = document.querySelector('.preview-photo');
-//     while(preview.firstChild) {
-//         preview.removeChild(preview.firstChild);
-//     }
-
-//     let files = addPhoto.files;
-//     let list = document.createElement('ul');
-//     preview.appendChild(list);
-//     for(let i = 0; i < files.length; i++) {
-//         let listItem = document.createElement('li');
-//         let image = document.createElement('img');
-//         image.src = window.URL.createObjectURL(files[i]);
-//         listItem.appendChild(image);
-//         list.appendChild(listItem);
-//     }
-// }
 
 //----------------------------------------------------------------
 

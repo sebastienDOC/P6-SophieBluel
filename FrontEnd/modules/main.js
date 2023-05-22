@@ -26,12 +26,6 @@ log.addEventListener('click', function() {
 editionMode();
 
 // Logout
-let publish = document.getElementById('changements');
-publish.addEventListener('click', function() {
-        logout();
-        window.location = "./index.html";
-})
-
 log.addEventListener('click', function() {
     if (log.innerHTML === 'logout') {
         logout();
@@ -57,10 +51,6 @@ window.addEventListener('keydown', function (event) {
 // Aperçu ajout projet
 let addProjet = document.getElementById('add-projet');
 addProjet.addEventListener('change', showPreview);
-
-// Aperçu changement image personnelle modale 
-// let changePhoto = document.getElementById('add-photo');
-// changePhoto.addEventListener('change', showPreviewPhoto);
 
 // ---------------------------------------------------------------------------
 
