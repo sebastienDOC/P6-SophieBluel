@@ -1,5 +1,5 @@
 import { getData } from './fetch.js';
-import { afficherProjet, creerBouton, tri, editionMode, afficherProjetModale, showPreview, deleteProject, addProject, openModal, closeModal, navModal, modaleBefore, logout } from './fonctions.js';
+import { afficherProjet, creerBouton, filtresTri, editionMode, afficherProjetModale, showPreview, deleteProject, addProject, openModal, closeModal, navModal, modaleBefore, logout } from './fonctions.js';
 
 //Affichage des projets et des filtres dans la gallerie
 let urlProjets = "http://localhost:5678/api/works";
@@ -9,8 +9,8 @@ getData(urlProjets, projets => {
     afficherProjet(projets)
 
     getData(urlCategories, categories => {
-        creerBouton(categories)
-        tri(projets);
+        creerBouton(categories, projets)  
+        filtresTri(projets, categories);
     })
 })
 

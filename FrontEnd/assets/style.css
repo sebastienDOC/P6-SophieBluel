@@ -134,12 +134,14 @@ li:hover {
 	text-align: center;
 }
 .gallery {
-	margin: 70px 0 0 0;
 	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-column-gap: 20px;
 	grid-row-gap: 20px;
+}
+.gallery-modif {
+	margin: 70px 0 0 0;
 }
 .gallery img {
 	width: 100%;

@@ -15,7 +15,7 @@ export function afficherProjet(projets) {
     })
 }
 
-export function creerBouton(categories) {
+export function creerBouton(categories, projets) {
     let filtres = document.querySelector(".filtres");
 
     const boutonAll = document.createElement("input");
@@ -30,45 +30,29 @@ export function creerBouton(categories) {
         bouton.type = 'button';
         bouton.value = categorie.name;
         bouton.id = `btn-${categorie.id}`;
-    })
+    })  
 }
 
-export function tri(projets) {
-    const boutonTous = document.getElementById("btn-0");
-    boutonTous.addEventListener("click", function () {
-        const tous = projets.filter(function (projet) {
-            return projet.categoryId;
-        });
+export function filtresTri(projets, categories){
+    let btnTous = document.getElementById('btn-0')
+    btnTous.addEventListener('click', function(){
+        let btn = projets.filter(function (projet) {
+            return projet.categoryId;                   
+        })
         document.querySelector(".gallery").innerHTML = "";
-        afficherProjet(tous);
-    });
+        afficherProjet(btn);
+    })
 
-    const boutonObjets = document.getElementById("btn-1");
-    boutonObjets.addEventListener("click", function () {
-        const objets = projets.filter(function (projet) {
-            return projet.categoryId === 1;
-        });
-        document.querySelector(".gallery").innerHTML = "";
-        afficherProjet(objets);
-    });
-
-    const boutonAppartements = document.getElementById("btn-2");
-    boutonAppartements.addEventListener("click", function () {
-        const appartements = projets.filter(function (projet) {
-            return projet.categoryId === 2;
-        });
-        document.querySelector(".gallery").innerHTML = "";
-        afficherProjet(appartements);
-    });
-
-    const boutonHotels = document.getElementById("btn-3");
-    boutonHotels.addEventListener("click", function () {
-        const hotels = projets.filter(function (projet) {
-            return projet.categoryId === 3;
-        });
-        document.querySelector(".gallery").innerHTML = "";
-        afficherProjet(hotels);
-    });
+    for (let i = 1; i <= categories.length ; i++) {
+        let getBtn = document.getElementById(`btn-${i}`)
+        getBtn.addEventListener('click', function(){
+            let btn = projets.filter(function (projet) {
+                return projet.categoryId === i;                   
+            })
+            document.querySelector(".gallery").innerHTML = "";
+            afficherProjet(btn);
+        })
+    }
 }
 
 // -------------------------------------------------------------
@@ -83,6 +67,8 @@ export function editionMode() {
         barre.classList.toggle('appearFlex');
         let filtre = document.querySelector(".filtres");
         filtre.classList.toggle('hide');
+        let gallery = document.querySelector(".gallery");
+        gallery.classList.add('gallery-modif');
         let modifier = document.querySelectorAll(".modifier");
         let modifs = Array.from(modifier);
         modifs.forEach(modif => {
