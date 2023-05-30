@@ -15,7 +15,7 @@ export function afficherProjet(projets) {
     })
 }
 
-export function creerBouton(categories, projets) {
+export function creerBouton(categories) {
     let filtres = document.querySelector(".filtres");
 
     const boutonAll = document.createElement("input");
@@ -34,20 +34,15 @@ export function creerBouton(categories, projets) {
 }
 
 export function filtresTri(projets, categories){
-    let btnTous = document.getElementById('btn-0')
-    btnTous.addEventListener('click', function(){
-        let btn = projets.filter(function (projet) {
-            return projet.categoryId;                   
-        })
-        document.querySelector(".gallery").innerHTML = "";
-        afficherProjet(btn);
-    })
-
-    for (let i = 1; i <= categories.length ; i++) {
+    for (let i = 0; i <= categories.length ; i++) {
         let getBtn = document.getElementById(`btn-${i}`)
         getBtn.addEventListener('click', function(){
             let btn = projets.filter(function (projet) {
-                return projet.categoryId === i;                   
+                if (i != 0) {
+                    return projet.categoryId === i; 
+                } else {
+                    return projet.categoryId
+                }                   
             })
             document.querySelector(".gallery").innerHTML = "";
             afficherProjet(btn);
@@ -130,7 +125,6 @@ export function closeModal(event) {
         modale1.classList.remove('hide');
         modale2.classList.add('hide');
     }
-    
 }
 
 export function stopPropagation(event) {

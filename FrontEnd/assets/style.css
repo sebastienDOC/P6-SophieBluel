@@ -255,6 +255,10 @@ footer nav ul {
 	color: white;
 	background-color: #B1663C;
 }
+#black_bar input:focus {
+	color: white;
+	background-color: #B1663C;
+}
 #black_bar a {
 	color: white;
 	margin-right: 20px;
